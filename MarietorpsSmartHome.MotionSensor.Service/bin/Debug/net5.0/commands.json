@@ -1,0 +1,14 @@
+{
+  "commands": {
+    "copyToRaspberry": {
+      "fileName": "powershell.exe",
+      "workingDirectory": ".",
+      "arguments": "-ExecutionPolicy Bypass -File copyToRaspberry.ps1"
+    },
+    "bat": {
+      "fileName": "cmd.exe",
+      "workingDirectory": ".",
+      "arguments": "test.bat"
+    }
+  }
+}
