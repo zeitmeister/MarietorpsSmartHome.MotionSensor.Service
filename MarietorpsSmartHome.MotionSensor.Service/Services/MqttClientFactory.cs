@@ -1,20 +1,15 @@
-﻿using MarietorpsSmartHome.MotionSensor.Service.BackgroundServices;
+﻿using MarietorpsSmartHome.MotionSensor.Service.Models;
 using Microsoft.Extensions.Options;
 using MQTTnet;
 using MQTTnet.Client;
 using MQTTnet.Client.Options;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MarietorpsSmartHome.MotionSensor.Service.Services
 {
     public interface ICustomMqttClientFactory
     {
-        IMqttClient MqttClient { get; set; }
-        IMqttClientOptions MqttOptions { get; set; }
+        IMqttClient MqttClient { get; }
+        IMqttClientOptions MqttOptions { get; }
     }
     public class MqttClientFactory : ICustomMqttClientFactory
     {

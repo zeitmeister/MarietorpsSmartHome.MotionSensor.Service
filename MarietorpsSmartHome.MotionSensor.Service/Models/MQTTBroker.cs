@@ -1,9 +1,8 @@
-﻿namespace MarietorpsSmartHome.MotionSensor.Service.BackgroundServices
+﻿namespace MarietorpsSmartHome.MotionSensor.Service.Models
 {
     public class MQTTBroker
     {
         public string IpAddress { get; set; }
         public int Port { get; set; }
-        public string ClientId { get; set; }
     }
 }

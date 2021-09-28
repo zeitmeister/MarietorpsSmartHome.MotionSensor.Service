@@ -1,4 +1,4 @@
-﻿namespace MarietorpsSmartHome.MotionSensor.Service
+﻿namespace MarietorpsSmartHome.MotionSensor.Service.Models
 {
     public class MQTTUser
     {
