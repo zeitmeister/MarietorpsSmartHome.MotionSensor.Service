@@ -1,5 +1,6 @@
 using MarietorpsSmartHome.MotionSensor.Service.BackgroundServices;
 using MarietorpsSmartHome.MotionSensor.Service.HelperFunctions;
+using MarietorpsSmartHome.MotionSensor.Service.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -24,8 +25,12 @@ namespace MarietorpsSmartHome.MotionSensor.Service
                     services.AddHostedService<MotionSensorWatcher>();
                     services.AddHostedService<StoppingWatcher>();
                     services.AddSingleton<IHelperFunctions, HelperFunctions.HelperFunctions>();
+                    services.AddSingleton<ICustomMqttClientFactory, MqttClientFactory>();
                     services.Configure<MQTTUser>(hostContext.Configuration.GetSection("MQTTUser"));
                     services.Configure<MQTTBroker>(hostContext.Configuration.GetSection("MQTTBroker"));
+                    services.Configure<MQTTBroker>(hostContext.Configuration.GetSection("MQTTClient"));
+                    services.Configure<FortySixElksCred>(hostContext.Configuration.GetSection("46ElksCreds"));
+
                 });
     }
 }

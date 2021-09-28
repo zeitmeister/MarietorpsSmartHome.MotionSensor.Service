@@ -1,5 +1,6 @@
 ﻿using MarietorpsSmartHome.MotionSensor.Service.HelperFunctions;
 using MarietorpsSmartHome.MotionSensor.Service.Models;
+using MarietorpsSmartHome.MotionSensor.Service.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
@@ -20,44 +21,37 @@ namespace MarietorpsSmartHome.MotionSensor.Service.BackgroundServices
     public class MotionSensorWatcher : BackgroundService
     {
         private readonly IHelperFunctions _helperFunctions;
-        private readonly IConfiguration _configuration;
-        private readonly MQTTUser _mqttUser;
-        private readonly MQTTBroker _mqttBroker;
-        private readonly MQTTClient _mqttClient;
         private readonly FortySixElksCred _fortySixElksCred;
+        private readonly ICustomMqttClientFactory _mqttClientFactory;
+        private readonly IMqttClient _mqttClient;
+        private readonly IMqttClientOptions _mqttOptions;
         private List<ThresholdModel> ThresholdModels { get; set; } = new List<ThresholdModel>();
-        public MotionSensorWatcher(IHelperFunctions helperFunctions, IOptionsMonitor<MQTTUser> optionsMonitorMQTTUser, IOptionsMonitor<MQTTBroker> optionsMonitorMQTTBroker, IOptionsMonitor<MQTTClient> optionsMonitorMQTTClient, IOptionsMonitor<FortySixElksCred> optionsMonitorFortySixElksCred)
+        public MotionSensorWatcher(IHelperFunctions helperFunctions, IOptionsMonitor<FortySixElksCred> optionsMonitorFortySixElksCred, ICustomMqttClientFactory mqttClientFactory)
         {
             _fortySixElksCred = optionsMonitorFortySixElksCred.CurrentValue;
-            _mqttUser = optionsMonitorMQTTUser.CurrentValue;
-            _mqttBroker = optionsMonitorMQTTBroker.CurrentValue;
-            _mqttClient = optionsMonitorMQTTClient.CurrentValue;
             _helperFunctions = helperFunctions;
+            _mqttClientFactory = mqttClientFactory;
+            _mqttClient = _mqttClientFactory.MqttClient;
+            _mqttOptions = _mqttClientFactory.MqttOptions;
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             
-            var mqttOptions = new MqttClientOptionsBuilder()
-                .WithClientId(_mqttClient.ClientName)
-                .WithTcpServer(_mqttBroker.IpAddress, _mqttBroker.Port)
-                .WithCredentials(_mqttUser.Username, _mqttUser.Password)
-                .Build();
-            var factory = new MqttFactory();
-            var mqttClient = factory.CreateMqttClient();
+          
 
             
 
-            mqttClient.UseConnectedHandler(async e =>
+            _mqttClient.UseConnectedHandler(async e =>
             {
                 Console.WriteLine("### CONNECTED WITH SERVER ###");
                 //_logger.LogInformation("### CONNECTED WITH SERVER ###");
                 // Subscribe to a topic
-                var result = await mqttClient.SubscribeAsync(new MqttTopicFilterBuilder().WithTopic("balcony/motion").Build());
+                var result = await _mqttClient.SubscribeAsync(new MqttTopicFilterBuilder().WithTopic("balcony/motion").Build());
                 //_logger.LogInformation("### SUBSCRIBED ###");
                 //Console.WriteLine("### SUBSCRIBED ###");
             });
 
-            mqttClient.UseApplicationMessageReceivedHandler(async e =>
+            _mqttClient.UseApplicationMessageReceivedHandler(async e =>
             {
                 Console.WriteLine("Message recieved");
                 ThresholdModels.Add(new ThresholdModel { TimeStamp = DateTime.Now });
@@ -75,7 +69,7 @@ namespace MarietorpsSmartHome.MotionSensor.Service.BackgroundServices
                 
             });
 
-            mqttClient.UseDisconnectedHandler(async e =>
+            _mqttClient.UseDisconnectedHandler(async e =>
             {
                 Console.WriteLine("### DISCONNECTED FROM SERVER ###");
                 //_logger.LogError("### DISCONNECTED FROM SERVER ###");
@@ -84,7 +78,7 @@ namespace MarietorpsSmartHome.MotionSensor.Service.BackgroundServices
                 try
                 {
                     //_logger.LogInformation("### ATTEMPTING TO RECONNECT TO THE SERVER ###");
-                    await mqttClient.ConnectAsync(mqttOptions, CancellationToken.None); // Since 3.0.5 with CancellationToken
+                    await _mqttClient.ConnectAsync(_mqttOptions, CancellationToken.None); // Since 3.0.5 with CancellationToken
                 }
                 catch
                 {
@@ -93,7 +87,7 @@ namespace MarietorpsSmartHome.MotionSensor.Service.BackgroundServices
                 }
                 //_logger.LogInformation("### RECONNECTION SUCCESSFUL ###");
             });
-            var connectResult = await mqttClient.ConnectAsync(mqttOptions);
+            var connectResult = await _mqttClient.ConnectAsync(_mqttOptions);
             Console.WriteLine("Connected?!");
         }
 
