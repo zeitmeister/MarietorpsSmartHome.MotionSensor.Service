@@ -6271,39 +6271,32 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\simon\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+    "/home/simon/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\simon\\hobby_projects\\MarietorpsSmartHome.MotionSensor.Service\\MotionSensor.Tests\\MotionSensor.Tests.csproj",
+      "projectUniqueName": "/home/simon/code/MarietorpsSmartHome.MotionSensor.Service/MotionSensor.Tests/MotionSensor.Tests.csproj",
       "projectName": "MotionSensor.Tests",
-      "projectPath": "C:\\Users\\simon\\hobby_projects\\MarietorpsSmartHome.MotionSensor.Service\\MotionSensor.Tests\\MotionSensor.Tests.csproj",
-      "packagesPath": "C:\\Users\\simon\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\simon\\hobby_projects\\MarietorpsSmartHome.MotionSensor.Service\\MotionSensor.Tests\\obj\\",
+      "projectPath": "/home/simon/code/MarietorpsSmartHome.MotionSensor.Service/MotionSensor.Tests/MotionSensor.Tests.csproj",
+      "packagesPath": "/home/simon/.nuget/packages/",
+      "outputPath": "/home/simon/code/MarietorpsSmartHome.MotionSensor.Service/MotionSensor.Tests/obj/",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\simon\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "/home/simon/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\simon\\hobby_projects\\MarietorpsSmartHome.MotionSensor.Service\\MarietorpsSmartHome.MotionSensor.Service\\MarietorpsSmartHome.MotionSensor.Service.csproj": {
-              "projectPath": "C:\\Users\\simon\\hobby_projects\\MarietorpsSmartHome.MotionSensor.Service\\MarietorpsSmartHome.MotionSensor.Service\\MarietorpsSmartHome.MotionSensor.Service.csproj"
+            "/home/simon/code/MarietorpsSmartHome.MotionSensor.Service/MarietorpsSmartHome.MotionSensor.Service/MarietorpsSmartHome.MotionSensor.Service.csproj": {
+              "projectPath": "/home/simon/code/MarietorpsSmartHome.MotionSensor.Service/MarietorpsSmartHome.MotionSensor.Service/MarietorpsSmartHome.MotionSensor.Service.csproj"
             }
           }
         }
@@ -6354,7 +6347,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/home/simon/.dotnet/sdk/5.0.400/RuntimeIdentifierGraph.json"
       }
     }
   }

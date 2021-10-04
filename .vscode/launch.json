@@ -1,0 +1,17 @@
+{
+    "configurations": [
+    {
+        "name": ".NET Core Launch (console)",
+        "type": "coreclr",
+        "request": "launch",
+        "preLaunchTask": "build",
+        "program": "${workspaceFolder}/MarietorpsSmartHome.MotionSensor.Service/bin/Debug/net5.0/MarietorpsSmartHome.MotionSensor.Service.dll",
+        "args": [],
+        "cwd": "${workspaceFolder}",
+        "stopAtEntry": false,
+        "console": "integratedTerminal" 
+    }
+    
+    
+],
+}
