@@ -11,8 +11,6 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("dotnet-MarietorpsSmartHome.MotionSensor.Service-C2707DE8-6CE3-442D-9AE8-C23AAFBF9" +
-    "3E2")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("MarietorpsSmartHome.MotionSensor.Service")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
