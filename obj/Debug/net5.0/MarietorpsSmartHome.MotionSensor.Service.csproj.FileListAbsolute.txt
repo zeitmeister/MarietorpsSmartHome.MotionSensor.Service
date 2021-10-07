@@ -1,0 +1,5 @@
+/home/simon/code/MarietorpsSmartHome.MotionSensor.Service/obj/Debug/net5.0/MarietorpsSmartHome.MotionSensor.Service.csproj.AssemblyReference.cache
+/home/simon/code/MarietorpsSmartHome.MotionSensor.Service/obj/Debug/net5.0/MarietorpsSmartHome.MotionSensor.Service.GeneratedMSBuildEditorConfig.editorconfig
+/home/simon/code/MarietorpsSmartHome.MotionSensor.Service/obj/Debug/net5.0/MarietorpsSmartHome.MotionSensor.Service.AssemblyInfoInputs.cache
+/home/simon/code/MarietorpsSmartHome.MotionSensor.Service/obj/Debug/net5.0/MarietorpsSmartHome.MotionSensor.Service.AssemblyInfo.cs
+/home/simon/code/MarietorpsSmartHome.MotionSensor.Service/obj/Debug/net5.0/MarietorpsSmartHome.MotionSensor.Service.csproj.CoreCompileInputs.cache

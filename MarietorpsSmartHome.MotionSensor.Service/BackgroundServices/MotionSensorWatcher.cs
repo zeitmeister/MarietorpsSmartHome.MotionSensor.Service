@@ -38,7 +38,7 @@ namespace MarietorpsSmartHome.MotionSensor.Service.BackgroundServices
         {
             
           
-
+            Init();
             
 
             _mqttClient.UseConnectedHandler(async e =>
@@ -116,6 +116,28 @@ namespace MarietorpsSmartHome.MotionSensor.Service.BackgroundServices
               .PostAsync("/a1/SMS", content);
             //response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsStringAsync();
+        }
+
+        private void Init()
+        {
+                CheckConfig(_fortySixElksCred);
+        }
+
+        private static void CheckConfig(object classInstance)
+        {
+            
+            var test = classInstance.GetType();
+            foreach (var prop in test.GetProperties())
+            {
+                var value = (string)prop.GetValue(classInstance);
+                if (string.IsNullOrEmpty(value)) 
+                {
+                    System.Console.WriteLine($"{prop.Name} of {test} is null. Please enter a value:");
+                    
+                    var temp = Console.ReadLine();
+                    prop.SetValue(classInstance, temp);
+                }
+            } 
         }
     }
 }
