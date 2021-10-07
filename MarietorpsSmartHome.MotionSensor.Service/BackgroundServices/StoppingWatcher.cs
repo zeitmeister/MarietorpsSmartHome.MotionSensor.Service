@@ -13,9 +13,22 @@ namespace MarietorpsSmartHome.MotionSensor.Service.BackgroundServices
 {
     public class StoppingWatcher : BackgroundService
     {
+        IHostApplicationLifetime _applicationLifetime;
+
+        public StoppingWatcher(IHostApplicationLifetime applicationLifetime)
+        {
+            _applicationLifetime = applicationLifetime;
+        }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            Console.WriteLine($"Hello from PID {Process.GetCurrentProcess().Id}, press CTRL+C to exit.");
+            _applicationLifetime.ApplicationStopping.Register(() =>
+            {
+                Console.WriteLine("Din morsa är avstängd som fan");
+            });
+            
+
+            
+            Console.WriteLine($"Hello from PID {Process.GetCurrentProcess().Id}, press det gamla vanliga to exit.");
 
             AssemblyLoadContext.GetLoadContext(Assembly.GetExecutingAssembly()).Unloading += context =>
             {

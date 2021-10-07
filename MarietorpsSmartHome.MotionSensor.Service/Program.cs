@@ -33,5 +33,6 @@ namespace MarietorpsSmartHome.MotionSensor.Service
                     services.Configure<FortySixElksCred>(hostContext.Configuration.GetSection("46ElksCreds"));
 
                 });
+        
     }
 }
